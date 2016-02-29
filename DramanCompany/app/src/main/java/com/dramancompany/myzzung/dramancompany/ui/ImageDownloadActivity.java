@@ -18,7 +18,6 @@ public class ImageDownloadActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
-
     }
 
 }
