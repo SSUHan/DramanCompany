@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:onClick="doImageBtn1"
             android:text="ImageView #1" />
 
         <Button
@@ -35,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:onClick="doImageBtn2"
             android:text="ImageView #2" />
 
         <Button
@@ -42,19 +44,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:onClick="doImageBtn3"
             android:text="ImageView #3" />
 
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/imageview_1"
         android:layout_width="300px"
         android:layout_height="300px"
         android:background="@drawable/noimage"/>
+
     <ImageView
+        android:id="@+id/imageview_2"
         android:layout_width="300px"
         android:layout_height="300px"
         android:background="@drawable/noimage"/>
+
     <ImageView
+        android:id="@+id/imageview_3"
         android:layout_width="300px"
         android:layout_height="300px"
         android:background="@drawable/noimage"/>
