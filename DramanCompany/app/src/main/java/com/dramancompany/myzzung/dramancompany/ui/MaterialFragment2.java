@@ -33,9 +33,11 @@ public class MaterialFragment2 extends Fragment {
 
         recyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view);
 
-        mAdapter = new RecycleListAdapter(createList(), R.layout.recyclerview_custom_item);
+        mAdapter = new RecycleListAdapter(getContext(), createList(), R.layout.recyclerview_custom_item);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
 
         recyclerView.setAdapter(mAdapter);
 

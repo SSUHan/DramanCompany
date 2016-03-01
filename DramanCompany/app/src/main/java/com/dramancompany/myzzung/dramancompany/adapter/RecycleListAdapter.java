@@ -1,10 +1,12 @@
 package com.dramancompany.myzzung.dramancompany.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dramancompany.myzzung.dramancompany.R;
 import com.dramancompany.myzzung.dramancompany.model.RecycleModel;
@@ -16,13 +18,16 @@ import java.util.List;
 /**
  * Created by myZZUNG on 2016. 3. 2..
  */
-public class RecycleListAdapter extends RecyclerView.Adapter<RecycleListAdapter.ReviewHolder> {
+public class RecycleListAdapter extends RecyclerView.Adapter<RecycleListAdapter.ReviewHolder> implements View.OnClickListener{
 
     private List<RecycleModel> mList;
 
     private int item_custom_layout;
 
-    public RecycleListAdapter(List<RecycleModel> list, int itemLayout){
+    private Context mContext;
+
+    public RecycleListAdapter(Context context, List<RecycleModel> list, int itemLayout){
+        this.mContext = context;
         this.mList = list;
         this.item_custom_layout = itemLayout;
     }
@@ -30,6 +35,7 @@ public class RecycleListAdapter extends RecyclerView.Adapter<RecycleListAdapter.
     @Override
     public ReviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(item_custom_layout, parent, false);
+        view.setOnClickListener(this);
         return new ReviewHolder(view);
     }
 
@@ -56,6 +62,12 @@ public class RecycleListAdapter extends RecyclerView.Adapter<RecycleListAdapter.
         int position = mList.indexOf(item);
         mList.remove(position);
         notifyItemRemoved(position);
+    }
+
+    @Override
+    public void onClick(View v) {
+        RecycleModel clickedItem = (RecycleModel)v.getTag();
+        Toast.makeText(v.getContext(), clickedItem.getmId()+" "+clickedItem.getmName(), Toast.LENGTH_SHORT).show();
     }
 
     public static class ReviewHolder extends RecyclerView.ViewHolder{
