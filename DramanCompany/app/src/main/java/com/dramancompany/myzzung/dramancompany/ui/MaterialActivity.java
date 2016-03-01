@@ -36,6 +36,7 @@ public class MaterialActivity extends AppCompatActivity {
         tabLayout = (TabLayout)findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
+
     }
 
 }
