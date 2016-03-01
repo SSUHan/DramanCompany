@@ -33,10 +33,10 @@ public class LocalDBActivity extends AppCompatActivity {
 
         mList = new ArrayList<MyCard>();
 
-        mList.add(new MyCard());
-        mList.add(new MyCard());
-        mList.add(new MyCard());
-        mList.add(new MyCard());
+        mList.add(new MyCard("이준수","드라마앤컴퍼니","안드로이드"));
+        mList.add(new MyCard("안녕안녕","삼성","서버"));
+        mList.add(new MyCard("이름이름","엘지","안드로이드"));
+        mList.add(new MyCard("오오오","삼성","웹"));
 
         mAdapter = new CardListAdapter(mList);
 
