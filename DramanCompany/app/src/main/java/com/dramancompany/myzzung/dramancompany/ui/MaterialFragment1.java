@@ -10,11 +10,12 @@ import android.view.ViewGroup;
 
 import com.dramancompany.myzzung.dramancompany.R;
 import com.dramancompany.myzzung.dramancompany.ui.MaterialActivity;
+import com.dramancompany.myzzung.dramancompany.util.FragmentLifeInterface;
 
 /**
  * Created by myZZUNG on 2016. 3. 1..
  */
-public class MaterialFragment1 extends Fragment {
+public class MaterialFragment1 extends Fragment implements FragmentLifeInterface{
 
     private CollapsingToolbarLayout collapsingToolbarLayout;
 
@@ -38,4 +39,13 @@ public class MaterialFragment1 extends Fragment {
     }
 
 
+    @Override
+    public void onOpenFragment() {
+
+    }
+
+    @Override
+    public void onCloseFragment() {
+
+    }
 }

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.dramancompany.myzzung.dramancompany.R;
 import com.dramancompany.myzzung.dramancompany.adapter.RecycleListAdapter;
 import com.dramancompany.myzzung.dramancompany.model.RecycleModel;
+import com.dramancompany.myzzung.dramancompany.util.FragmentLifeInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
 /**
  * Created by myZZUNG on 2016. 3. 1..
  */
-public class MaterialFragment2 extends Fragment {
+public class MaterialFragment2 extends Fragment implements FragmentLifeInterface{
 
     private RecyclerView recyclerView;
     private RecycleListAdapter mAdapter;
@@ -65,4 +66,13 @@ public class MaterialFragment2 extends Fragment {
     }
 
 
+    @Override
+    public void onOpenFragment() {
+
+    }
+
+    @Override
+    public void onCloseFragment() {
+
+    }
 }

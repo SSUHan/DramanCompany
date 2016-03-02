@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.dramancompany.myzzung.dramancompany.R;
 import com.dramancompany.myzzung.dramancompany.adapter.ViewPagerAdapter;
+import com.dramancompany.myzzung.dramancompany.util.FragmentLifeInterface;
 
 public class MaterialActivity extends AppCompatActivity {
 
@@ -32,6 +33,30 @@ public class MaterialActivity extends AppCompatActivity {
         mPagerAdapter.addFragment(new MaterialFragment3(),"Screen #3");
 
         viewPager.setAdapter(mPagerAdapter);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            private int currentPosition=0;
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                FragmentLifeInterface fragmentToShow = (FragmentLifeInterface)mPagerAdapter.getItem(position);
+                fragmentToShow.onOpenFragment();
+
+                FragmentLifeInterface fragmentToHide = (FragmentLifeInterface)mPagerAdapter.getItem(currentPosition);
+                fragmentToHide.onCloseFragment();
+
+                currentPosition = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         tabLayout = (TabLayout)findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
