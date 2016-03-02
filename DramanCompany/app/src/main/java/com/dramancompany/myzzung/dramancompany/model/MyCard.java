@@ -16,10 +16,13 @@ public class MyCard {
 
     }
 
-    public MyCard(String name, String company, String position){
+    public MyCard(String name, String company, String position, String department, String phone, String address){
         this.mName = name;
         this.mCompany = company;
         this.mPosition = position;
+        this.mDepartment = department;
+        this.mPhone = phone;
+        this.mAddress =address;
     }
 
     public String getmName() {

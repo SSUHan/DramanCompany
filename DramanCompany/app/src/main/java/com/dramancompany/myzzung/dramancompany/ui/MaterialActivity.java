@@ -19,6 +19,7 @@ public class MaterialActivity extends AppCompatActivity {
     private ViewPagerAdapter mPagerAdapter;
 
     private TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
