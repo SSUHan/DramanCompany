@@ -1,7 +1,13 @@
 package com.dramancompany.myzzung.dramancompany.adapter;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
+import android.test.suitebuilder.annotation.Suppress;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +16,7 @@ import android.widget.Toast;
 
 import com.dramancompany.myzzung.dramancompany.R;
 import com.dramancompany.myzzung.dramancompany.model.RecycleModel;
+import com.dramancompany.myzzung.dramancompany.ui.SharedElementActivity;
 
 import org.w3c.dom.Text;
 
@@ -18,7 +25,7 @@ import java.util.List;
 /**
  * Created by myZZUNG on 2016. 3. 2..
  */
-public class RecycleListAdapter extends RecyclerView.Adapter<RecycleListAdapter.ReviewHolder> implements View.OnClickListener{
+public class RecycleListAdapter extends RecyclerView.Adapter<RecycleListAdapter.ReviewHolder>{
 
     private List<RecycleModel> mList;
 
@@ -35,7 +42,7 @@ public class RecycleListAdapter extends RecyclerView.Adapter<RecycleListAdapter.
     @Override
     public ReviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(item_custom_layout, parent, false);
-        view.setOnClickListener(this);
+
         return new ReviewHolder(view);
     }
 
@@ -64,21 +71,33 @@ public class RecycleListAdapter extends RecyclerView.Adapter<RecycleListAdapter.
         notifyItemRemoved(position);
     }
 
-    @Override
-    public void onClick(View v) {
-        RecycleModel clickedItem = (RecycleModel)v.getTag();
-        Toast.makeText(v.getContext(), clickedItem.getmId()+" "+clickedItem.getmName(), Toast.LENGTH_SHORT).show();
-    }
 
-    public static class ReviewHolder extends RecyclerView.ViewHolder{
+
+    public class ReviewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView name_text;
         public TextView company_text;
 
         public ReviewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             name_text = (TextView)itemView.findViewById(R.id.recyclerview_item_name);
             company_text = (TextView)itemView.findViewById(R.id.recyclerview_item_company);
+        }
+
+        @SuppressLint("NewApi")
+        @Override
+        public void onClick(View v) {
+            //RecycleModel clickedItem = (RecycleModel)v.getTag();
+
+            name_text.setTransitionName("name_text");
+
+            ActivityOptionsCompat optionComapt = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext, name_text, name_text.getTransitionName());
+
+            Intent intent = new Intent(mContext, SharedElementActivity.class);
+            intent.putExtra("shared_key",name_text.getText().toString());
+            mContext.startActivity(intent, optionComapt.toBundle());
+
         }
     }
 }

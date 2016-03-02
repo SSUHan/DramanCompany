@@ -31,6 +31,10 @@
         <activity
             android:name=".ui.MaterialActivity"
             android:label="@string/title_activity_material"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.SharedElementActivity"
+            android:label="@string/title_activity_shared_element"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
