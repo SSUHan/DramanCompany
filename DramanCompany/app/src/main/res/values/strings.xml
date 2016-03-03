@@ -5,4 +5,13 @@
     <string name="title_activity_local_db">LocalDBActivity</string>
     <string name="title_activity_material">MaterialActivity</string>
     <string name="title_activity_shared_element">SharedElementActivity</string>
+
+    <string-array name="search_category">
+        <item>이름</item>
+        <item>회사</item>
+        <item>직군</item>
+        <item>부서</item>
+        <item>전화번호</item>
+        <item>사는곳</item>
+    </string-array>
 </resources>

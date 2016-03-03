@@ -8,6 +8,7 @@ import android.text.style.TtsSpan;
 import android.util.Log;
 
 import com.dramancompany.myzzung.dramancompany.model.MyCard;
+import com.dramancompany.myzzung.dramancompany.util.CardUtil;
 import com.dramancompany.myzzung.dramancompany.util.DCDBUtil;
 
 import java.lang.reflect.Array;
@@ -141,14 +142,39 @@ public class CardDBHelper extends SQLiteOpenHelper {
     public ArrayList<MyCard> SearchData(String tableName, String target){
         ArrayList<MyCard> newList = new ArrayList<MyCard>();
 
-        Cursor cursor = readDB.rawQuery("select * from "+tableName, null);
-        while (cursor.moveToNext()){
-            if(target.contains(cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_NAME)))){
-                MyCard item = new MyCard(cursor);
-                newList.add(item);
+        if(target==null || target.equals("")){
+            return newList;
+        }
+
+        try{
+            Cursor cursor = readDB.rawQuery("select * from "+tableName, null);
+            while (cursor.moveToNext()){
+                if(cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_NAME)).contains(target)){
+                    MyCard item = new MyCard(cursor, CardUtil.SEARCH_TYPE_NAME);
+                    newList.add(item);
+                }else if(cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_COMPANY)).contains(target)){
+                    MyCard item = new MyCard(cursor, CardUtil.SEARCH_TYPE_COMPANY);
+                    newList.add(item);
+                }else if(cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_POSITION)).contains(target)){
+                    MyCard item = new MyCard(cursor, CardUtil.SEARCH_TYPE_POSITION);
+                    newList.add(item);
+                }else if(cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_DEPARTMENT)).contains(target)){
+                    MyCard item = new MyCard(cursor, CardUtil.SEARCH_TYPE_DEPARTMENT);
+                    newList.add(item);
+                }else if(cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_PHONE)).contains(target)){
+                    MyCard item = new MyCard(cursor, CardUtil.SEARCH_TYPE_PHONE);
+                    newList.add(item);
+                }else if(cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_ADDRESS)).contains(target)){
+                    MyCard item = new MyCard(cursor, CardUtil.SEARCH_TYPE_ADDRESS);
+                    newList.add(item);
+                }
             }
+        }catch (Exception e){
+            return newList;
         }
 
         return  newList;
     }
+
+
 }

@@ -18,17 +18,25 @@ import java.util.ArrayList;
 public class CardListAdapter extends BaseAdapter {
 
     private ArrayList<MyCard> mList;
+    private Context mContext;
+    private String[] category_strings;
 
     public CardListAdapter(){
 
     }
 
-    public CardListAdapter(ArrayList<MyCard> list){
+    public CardListAdapter(Context context, ArrayList<MyCard> list){
         this.mList = list;
+        this.mContext = context;
+        category_strings = context.getResources().getStringArray(R.array.search_category);
     }
 
     public void addItem(MyCard newItem){
         mList.add(newItem);
+    }
+
+    public void setList(ArrayList<MyCard> list){
+        this.mList = list;
     }
 
     @Override
@@ -82,7 +90,8 @@ public class CardListAdapter extends BaseAdapter {
         tName.setText(mList.get(pos).getmName());
         tCompany.setText(mList.get(pos).getmCompany());
         tPosition.setText(mList.get(pos).getmPosition());
-
+        tMatchKey.setText(category_strings[mList.get(pos).getmSearch_type()]);
+        tMatchValue.setText(mList.get(pos).getMatchValue());
         return convertView;
     }
 

@@ -14,7 +14,9 @@ import android.widget.ListView;
 
 import com.dramancompany.myzzung.dramancompany.R;
 import com.dramancompany.myzzung.dramancompany.adapter.CardListAdapter;
+import com.dramancompany.myzzung.dramancompany.helper.CardDBHelper;
 import com.dramancompany.myzzung.dramancompany.model.MyCard;
+import com.dramancompany.myzzung.dramancompany.util.DCDBUtil;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -29,6 +31,8 @@ public class LocalDBActivity extends AppCompatActivity {
 
     private EditText input_search;
 
+    private CardDBHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +41,13 @@ public class LocalDBActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         listView = (ListView)findViewById(R.id.card_listview);
+        dbHelper = new CardDBHelper(getApplicationContext(), DCDBUtil.DB_NAME,null,1);
 
         input_search = (EditText)findViewById(R.id.input_search);
+
+        mList = new ArrayList<MyCard>();
+
+        mAdapter = new CardListAdapter(getApplicationContext(), mList);
 
         TextWatcher watcher = new TextWatcher() {
             @Override
@@ -54,26 +63,20 @@ public class LocalDBActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 Log.d(TAG, "textchange call"+s.toString());
+                mList = dbHelper.SearchData(DCDBUtil.CARD_TABLE_NAME,s.toString());
+                mAdapter.setList(mList);
+                mAdapter.notifyDataSetChanged();
             }
         };
 
         input_search.addTextChangedListener(watcher);
-
-        mList = new ArrayList<MyCard>();
-
-        mList.add(new MyCard("이준수","드라마앤컴퍼니","안드로이드","개발부서","010-7138-6209","서울"));
-        mList.add(new MyCard("안녕안녕","삼성","서버","개발팀","010-111-1111","인천"));
-
-//        mList.add(new MyCard("오오오","삼성","웹"));
-
-        mAdapter = new CardListAdapter(mList);
 
         listView.setAdapter(mAdapter);
 
     }
 
     public void doSearch(View v){
-        mAdapter.addItem(new MyCard("이름이름","엘지","안드로이드","개발준비","010-2222-2222","서울"));
+        //mAdapter.addItem(new MyCard("이름이름","엘지","안드로이드","개발준비","010-2222-2222","서울"));
         mAdapter.notifyDataSetChanged();
     }
 
