@@ -10,6 +10,9 @@ import android.util.Log;
 import com.dramancompany.myzzung.dramancompany.model.MyCard;
 import com.dramancompany.myzzung.dramancompany.util.DCDBUtil;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by myZZUNG on 2016. 3. 1..
  */
@@ -19,9 +22,12 @@ public class CardDBHelper extends SQLiteOpenHelper {
 
     private Context mContext;
 
+    private SQLiteDatabase readDB;
+
     public CardDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, name, factory, version);
         this.mContext = context;
+        readDB = getReadableDatabase();
     }
 
     @Override
@@ -130,6 +136,19 @@ public class CardDBHelper extends SQLiteOpenHelper {
         }catch(Exception e){
             return "no table";
         }
+    }
 
+    public ArrayList<MyCard> SearchData(String tableName, String target){
+        ArrayList<MyCard> newList = new ArrayList<MyCard>();
+
+        Cursor cursor = readDB.rawQuery("select * from "+tableName, null);
+        while (cursor.moveToNext()){
+            if(target.contains(cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_NAME)))){
+                MyCard item = new MyCard(cursor);
+                newList.add(item);
+            }
+        }
+
+        return  newList;
     }
 }

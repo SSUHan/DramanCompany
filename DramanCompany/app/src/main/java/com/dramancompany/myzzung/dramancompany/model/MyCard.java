@@ -1,5 +1,9 @@
 package com.dramancompany.myzzung.dramancompany.model;
 
+import android.database.Cursor;
+
+import com.dramancompany.myzzung.dramancompany.util.DCDBUtil;
+
 /**
  * Created by myZZUNG on 2016. 2. 29..
  */
@@ -14,6 +18,15 @@ public class MyCard {
 
     public MyCard(){
 
+    }
+
+    public MyCard(Cursor cursor){
+        this.mName = cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_NAME));
+        this.mCompany = cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_COMPANY));
+        this.mPosition = cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_POSITION));
+        this.mDepartment = cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_DEPARTMENT));
+        this.mPhone = cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_PHONE));
+        this.mAddress = cursor.getString(cursor.getColumnIndex(DCDBUtil.CARD_COL_ADDRESS));
     }
 
     public MyCard(String name, String company, String position, String department, String phone, String address){

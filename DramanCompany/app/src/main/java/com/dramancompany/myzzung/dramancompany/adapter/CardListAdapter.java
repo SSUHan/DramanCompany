@@ -27,6 +27,10 @@ public class CardListAdapter extends BaseAdapter {
         this.mList = list;
     }
 
+    public void addItem(MyCard newItem){
+        mList.add(newItem);
+    }
+
     @Override
     public int getCount() {
         return mList.size();
