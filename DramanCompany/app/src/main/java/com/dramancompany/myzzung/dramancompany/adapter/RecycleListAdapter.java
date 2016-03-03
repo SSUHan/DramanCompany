@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
@@ -85,18 +86,25 @@ public class RecycleListAdapter extends RecyclerView.Adapter<RecycleListAdapter.
             company_text = (TextView)itemView.findViewById(R.id.recyclerview_item_company);
         }
 
-        @SuppressLint("NewApi")
+
         @Override
         public void onClick(View v) {
             //RecycleModel clickedItem = (RecycleModel)v.getTag();
 
-            name_text.setTransitionName("name_text");
-
-            ActivityOptionsCompat optionComapt = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext, name_text, name_text.getTransitionName());
-
             Intent intent = new Intent(mContext, SharedElementActivity.class);
-            intent.putExtra("shared_key",name_text.getText().toString());
-            mContext.startActivity(intent, optionComapt.toBundle());
+            intent.putExtra("shared_key", name_text.getText().toString());
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                ActivityOptionsCompat optionComapt = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext, name_text, name_text.getTransitionName());
+                name_text.setTransitionName("name_text");
+                mContext.startActivity(intent, optionComapt.toBundle());
+            }else{
+                mContext.startActivity(intent);
+            }
+
+
+
+
+
 
         }
     }
