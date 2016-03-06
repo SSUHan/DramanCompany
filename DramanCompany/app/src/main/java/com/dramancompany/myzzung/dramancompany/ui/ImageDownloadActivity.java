@@ -60,6 +60,10 @@ public class ImageDownloadActivity extends AppCompatActivity {
     }
 
     public void doImageBtn1(View v){
+        /**
+         * ImageDownHelper 의 경우 doInBackground 가 한번 인스턴스당 한번만 실행이 되어야 하므로
+         * 이벤트 발생시마다 새로 인스턴스를 생성해주는 것이 강제된다
+         */
         imageHelper = new ImageDownHelper(getApplicationContext(), image_url, imageview1, image_cache);
         imageHelper.execute();
     }

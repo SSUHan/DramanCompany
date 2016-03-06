@@ -2,6 +2,7 @@ package com.dramancompany.myzzung.dramancompany.util;
 
 /**
  * Created by myZZUNG on 2016. 3. 2..
+ * SQLite 활용에 유용한  Util 클래스
  */
 public class DCDBUtil {
 

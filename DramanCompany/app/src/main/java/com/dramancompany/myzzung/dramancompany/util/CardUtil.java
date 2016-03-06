@@ -1,7 +1,9 @@
 package com.dramancompany.myzzung.dramancompany.util;
 
 /**
+ *
  * Created by myZZUNG on 2016. 3. 3..
+ * MyCard와 관련해서 유용한 flag 값들
  */
 public class CardUtil {
 

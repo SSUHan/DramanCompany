@@ -100,12 +100,6 @@ public class RecycleListAdapter extends RecyclerView.Adapter<RecycleListAdapter.
             }else{
                 mContext.startActivity(intent);
             }
-
-
-
-
-
-
         }
     }
 }

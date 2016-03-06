@@ -16,7 +16,7 @@ public class MyCard {
     private String mPosition;
     private String mPhone;
     private String mAddress;
-    private int mSearch_type;
+    private int mSearch_type; // 어떤 카테고리로 검색되어 보여지는지를 의미하는 flag 값
 
     public MyCard(){
 
@@ -92,6 +92,12 @@ public class MyCard {
     public int getmSearch_type() {
         return mSearch_type;
     }
+
+    /**
+     * 각 카드마다, 자신이 어떤 카테고리의 키워드로 검색되었는지에 따라
+     * 해당(match) 값(value)를 반환해준다
+     * @return
+     */
     public String getMatchValue(){
         if(mSearch_type == CardUtil.SEARCH_TYPE_NAME){
             return getmName();

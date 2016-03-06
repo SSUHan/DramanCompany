@@ -23,7 +23,7 @@ public class CardDBHelper extends SQLiteOpenHelper {
 
     private Context mContext;
 
-    private SQLiteDatabase readDB;
+    private SQLiteDatabase readDB; // 읽기전용 db_connction을 미리 받아놔 효율을 높인다
 
     public CardDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, name, factory, version);
@@ -139,6 +139,12 @@ public class CardDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * 디비에서 실시간으로 카드내용을 검색하기 위한 함수
+     * @param tableName
+     * @param target
+     * @return
+     */
     public ArrayList<MyCard> SearchData(String tableName, String target){
         ArrayList<MyCard> newList = new ArrayList<MyCard>();
 

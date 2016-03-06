@@ -32,6 +32,13 @@ public class ImageDownHelper extends AsyncTask<String, Integer, Bitmap> {
 
     }
 
+    /**
+     *
+     * @param context
+     * @param image_url 이미지 url 주소
+     * @param imageView 적용시킬 이미지 View 주소
+     * @param cache 메모리캐시 주소
+     */
     public ImageDownHelper(Context context, String image_url, ImageView imageView, LruCache<String, Bitmap> cache){
         mContext = context;
         mImageUrl = image_url;
